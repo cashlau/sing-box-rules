@@ -1,0 +1,26 @@
+{
+  "version": 5,
+  "rules": [
+    {
+      "domain_keyword": [
+        "siri"
+      ],
+      "domain_suffix": [
+        "apps.mzstatic.com",
+        "mask.icloud.com",
+        "mask-h2.icloud.com",
+        "mask-api.icloud.com",
+        "ls.apple.com",
+        "gateway.icloud.com",
+        "gspe1-ssl.ls.apple.com",
+        "cp4.cloudflare.com",
+        "apple-relay.fastly-edge.com",
+        "apple-relay.cloudflare.com",
+        "apple-relay.apple.com",
+        "smoot.apple.com",
+        "guzzoni.apple.com",
+        "apple-dns.net"
+      ]
+    }
+  ]
+}
