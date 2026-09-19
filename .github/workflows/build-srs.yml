@@ -1,0 +1,34 @@
+name: Build Siri SRS
+
+on:
+  push:
+    paths:
+      - "rules/siri.json"
+      - ".github/workflows/build-srs.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download sing-box
+        run: |
+          curl -fL -o sing-box.tar.gz https://github.com/SagerNet/sing-box/releases/download/v1.14.1/sing-box-1.14.1-linux-amd64.tar.gz
+          tar -xzf sing-box.tar.gz
+
+      - name: Compile SRS
+        run: |
+          ./sing-box-1.14.1-linux-amd64/sing-box rule-set compile --output rules/siri.srs rules/siri.json
+
+      - name: Commit SRS
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add rules/siri.srs
+          git diff --cached --quiet || git commit -m "Build Siri SRS"
+          git push
